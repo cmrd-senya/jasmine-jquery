@@ -118,13 +118,14 @@ describe("jasmine.Fixtures", function () {
       })
     })
 
-    describe("when fixture contains an inline <script> tag", function (){
-      beforeEach(function (){
+    describe("when fixture contains an inline <script> tag", function (done){
+      beforeEach(function (done){
         ajaxData = "<div><a id=\"anchor_01\"></a><script>$(function (){ $('#anchor_01').addClass('foo')});</script></div>"
+        jasmine.getFixtures().load(fixtureUrl)
+        $(done)
       })
 
       it("should execute the inline javascript after the fixture has been inserted into the body", function (){
-        jasmine.getFixtures().load(fixtureUrl)
         expect($("#anchor_01")).toHaveClass('foo')
       })
     })
@@ -177,12 +178,13 @@ describe("jasmine.Fixtures", function () {
     })
 
     describe("when fixture contains an inline <script> tag", function (){
-      beforeEach(function (){
+      beforeEach(function (done){
         ajaxData = "<div><a id=\"anchor_01\"></a><script>$(function (){ $('#anchor_01').addClass('foo')});</script></div>"
+        jasmine.getFixtures().appendLoad(fixtureUrl)
+        $(done)
       })
 
       it("should execute the inline javascript after the fixture has been inserted into the body", function (){
-        jasmine.getFixtures().appendLoad(fixtureUrl)
         expect($("#anchor_01")).toHaveClass('foo')
       })
     })
@@ -400,16 +402,17 @@ describe("jasmine.Fixtures using real AJAX call", function () {
   })
 
   describe("when fixture contains an <script src='to/your/source'> tag", function () {
-    var fixtureUrl = "fixture_with_javascript.html"
+    beforeEach(function (done) {
+      jasmine.getFixtures().load("fixture_with_javascript.html")
+      $(done)
+    })
 
     it("should load content of fixture file and javascript and bind events", function () {
-      jasmine.getFixtures().load(fixtureUrl)
       $('#anchor_01').click()
       expect($("#anchor_01")).toHaveClass('foo')
     })
 
     it("should load multiple javascripts and bind events in fixture", function () {
-      jasmine.getFixtures().load(fixtureUrl)
       $('#anchor_01').click()
       $('#anchor_01').trigger('hover')
       expect($("#anchor_01")).toHaveClass('foo')
