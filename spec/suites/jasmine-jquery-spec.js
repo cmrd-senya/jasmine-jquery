@@ -103,7 +103,7 @@ describe("jasmine.Fixtures", function () {
     describe("when fixture container does not exist", function () {
       it("should automatically create fixtures container and append it to DOM", function () {
         jasmine.getFixtures().load(fixtureUrl)
-        expect(fixturesContainer().size()).toEqual(1)
+        expect(fixturesContainer().length).toEqual(1)
       })
     })
 
@@ -157,7 +157,7 @@ describe("jasmine.Fixtures", function () {
 
     it("should automatically create fixtures container and append it to DOM", function () {
       jasmine.getFixtures().appendLoad(fixtureUrl)
-      expect(fixturesContainer().size()).toEqual(1)
+      expect(fixturesContainer().length).toEqual(1)
     })
 
     describe("with a prexisting fixture",function (){
@@ -172,7 +172,7 @@ describe("jasmine.Fixtures", function () {
 
       it("should not add a new fixture container", function (){
         jasmine.getFixtures().appendLoad(fixtureUrl)
-        expect(fixturesContainer().size()).toEqual(1)
+        expect(fixturesContainer().length).toEqual(1)
       })
     })
 
@@ -231,7 +231,7 @@ describe("jasmine.Fixtures", function () {
     describe("when fixture container does not exist", function () {
       it("should automatically create fixtures container and append it to DOM", function () {
         jasmine.getFixtures().set(html)
-        expect(fixturesContainer().size()).toEqual(1)
+        expect(fixturesContainer().length).toEqual(1)
       })
 
       it("should return the fixture container", function () {
@@ -294,7 +294,7 @@ describe("jasmine.Fixtures", function () {
     describe("when fixture container does not exist", function () {
       it("should automatically create fixtures container and append it to DOM", function () {
         jasmine.getFixtures().appendSet(html)
-        expect(fixturesContainer().size()).toEqual(1)
+        expect(fixturesContainer().length).toEqual(1)
       })
     })
 
@@ -349,7 +349,7 @@ describe("jasmine.Fixtures", function () {
     it("should remove fixtures container from DOM", function () {
       appendFixturesContainerToDom()
       jasmine.getFixtures().cleanUp()
-      expect(fixturesContainer().size()).toEqual(0)
+      expect(fixturesContainer().length).toEqual(0)
     })
   })
 
@@ -363,7 +363,7 @@ describe("jasmine.Fixtures", function () {
 
     // WARNING: this test must be invoked second (after 'FIRST TEST')!
     it("SECOND TEST: should see the DOM in a blank state", function () {
-      expect(fixturesContainer().size()).toEqual(0)
+      expect(fixturesContainer().length).toEqual(0)
     })
   })
 })
